@@ -19,10 +19,10 @@ export const getWeatherByCity = async (cityURL) => {
   const urlFinded = await fetch(searchUrl);
   const data = await urlFinded.json();
   return {
+    name: data.location.name,
+    country: data.location.country,
     temp: data.current.temp_c,
     condition: data.current.condition.text,
     icon: data.current.condition.icon,
   };
 };
-
-// getWeatherByCity('san-paulo-sao-paulo-brazil').then((res) => console.log(res));
