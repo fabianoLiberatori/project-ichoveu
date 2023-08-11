@@ -24,5 +24,23 @@ export const getWeatherByCity = async (cityURL) => {
     temp: data.current.temp_c,
     condition: data.current.condition.text,
     icon: data.current.condition.icon,
+    url: cityURL,
   };
+};
+
+export const getWeatherByWeek = async (cityURL) => {
+  const searchUrl = `http://api.weatherapi.com/v1/forecast.json?lang=pt&key=${token}&q=${cityURL}&days=7`;
+  const weekUrl = await fetch(searchUrl);
+  const resWeek = await weekUrl.json();
+  const findForecast = resWeek.forecast.forecastday;
+  const objWeekDays = await findForecast.map((elem) => {
+    return {
+      date: elem.date,
+      minTemp: elem.day.mintemp_c,
+      maxTemp: elem.day.maxtemp_c,
+      condition: elem.day.condition.text,
+      icon: elem.day.condition.icon,
+    };
+  });
+  return objWeekDays;
 };
