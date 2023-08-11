@@ -98,8 +98,8 @@ export function createCityElement(cityInfo) {
   iconElement.src = icon.replace('64x64', '128x128');
 
   const infoContainer = createElement('div', 'city-info-container');
-  const buttonWeek = document.createElement('button');
-  buttonWeek.innerHTML = 'Ver previsão';
+  const buttonWeek = createElement('button', 'city-forecast-button');
+  buttonWeek.innerText = 'Ver previsão';
   infoContainer.appendChild(tempContainer);
   infoContainer.appendChild(iconElement);
 
